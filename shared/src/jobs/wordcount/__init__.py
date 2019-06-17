@@ -16,7 +16,6 @@ def to_pairs(context, word):
 
 
 def analyze(sc):
-    print('Running wordcount')
     context = WordCountJobContext(sc)
     text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et ' \
            'dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ' \
@@ -44,6 +43,5 @@ def analyze(sc):
     counts = pairs.reduceByKey(lambda a, b: a + b)
     ordered = counts.sortBy(lambda pair: pair[1], ascending=False)
     result = ordered.collect()
-    print(result)
     context.print_accumulators()
     return result
